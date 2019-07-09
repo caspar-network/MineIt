@@ -65,14 +65,14 @@ public class onClick implements Listener {
         if(inventory.getName().contains("§cEdit mine") && isEditing(inventory)) {
             for(int x = 0; x<9; x++) {
                 if(inventory.getItem(x)==null) break;
-                //if(player.getItemOnCursor().getType()==Material.AIR) break;
+                if(player.getItemOnCursor().getType()==Material.AIR) break;
                 if(!inventory.getItem(x).equals(clicked)) continue;
-                /*if(inventory.getItem(x).hasItemMeta() && inventory.getItem(x).getItemMeta().hasDisplayName() &&
-                        inventory.getItem(x).getItemMeta().getDisplayName().equalsIgnoreCase("-")) break;*/
+                if(inventory.getItem(x).hasItemMeta() && inventory.getItem(x).getItemMeta().hasDisplayName() &&
+                        inventory.getItem(x).getItemMeta().getDisplayName().equalsIgnoreCase("-")) break;
 
                 e.setCancelled(true);
                 ItemStack item = new ItemStack(player.getItemOnCursor().getType());
-                //if(item==null) return;
+                if(item==null) return;
                 if(item.getType()!=Material.AIR && !item.getType().isBlock()) return;
 
                 for(Mines mine: MineIt.instance.minas) {
@@ -92,7 +92,7 @@ public class onClick implements Listener {
                         return;
                     }
 
-                    //item.setAmount(1);
+                    item.setAmount(1);
                     ItemMeta m = item.getItemMeta();
                     if (inventory.getItem(x).hasItemMeta() && inventory.getItem(x).getItemMeta().hasLore())
                         m.setLore(inventory.getItem(x).getItemMeta().getLore());
@@ -107,7 +107,7 @@ public class onClick implements Listener {
                     s.addAll(Arrays.asList(mine.stages));
                     if(s.contains(item.getType().name())) {
                         player.sendMessage(MineIt.prefix+"There's already a "+item.getType().name().toLowerCase()+" stage!");
-                        //player.closeInventory();
+                        player.closeInventory();
                         return;
                     }
                     s.add(item.getType().name());
@@ -157,7 +157,7 @@ public class onClick implements Listener {
     void edintingMine(Player player, Mines mine) {
         Inventory i = Bukkit.createInventory(null, 18, "§cEdit mine §d"+mine.name);
         for(int x = 0; x<9; x++) {
-            //if(x>=9) break;
+            if(x>=9) break;
             if(mine.stages.length>x) {
                 ItemStack block = new ItemStack(Material.getMaterial(mine.stages[x]));
                 ItemMeta meta = block.getItemMeta();
@@ -171,9 +171,9 @@ public class onClick implements Listener {
                 ItemStack gls = new ItemStack(Material.GLASS);
                 ItemMeta meta = gls.getItemMeta();
                 meta.setDisplayName("-");
-                            /*List<String> l = new ArrayList<String>();
+                            List<String> l = new ArrayList<String>();
                             l.add("None");
-                            meta.setLore(l);*/
+                            meta.setLore(l);
                 gls.setItemMeta(meta);
                 i.setItem(x, gls);
             }
