@@ -37,7 +37,7 @@ public class onInteract implements Listener {
         b.addAll(Arrays.asList(nb));
         MineIt.instance.bloques.put(ply.getName(), b.toArray(new Location[b.size()]));
 
-        //ply.sendMessage(">"+String.valueOf(bloques.get(ply.getName())));
+        ply.sendMessage(">"+String.valueOf(bloques.get(ply.getName())));
         for(Location l : b/*MineIt.instance.bloques.get(ply.getName())*/) l.getBlock().setType(Material.EMERALD_BLOCK);
     }
 
@@ -66,7 +66,7 @@ public class onInteract implements Listener {
             }
         }
 
-        //MineIt.instance.getLogger().info(b.toString());
+        MineIt.instance.getLogger().info(b.toString());
         if(b.size()==0) return null;
         return b.toArray(new Location[b.size()]);
     }
