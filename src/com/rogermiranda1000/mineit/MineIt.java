@@ -211,8 +211,8 @@ public class MineIt extends JavaPlugin {
 
             if(args.length == 0) {
                 player.openInventory(MineIt.inv);
-                /*getLogger().info("Giving Mine creator to "+player.getName()+"...");
-                player.getInventory().addItem(item);*/
+                getLogger().info("Giving Mine creator to "+player.getName()+"...");
+                player.getInventory().addItem(item);
                 return true;
             }
 
@@ -243,7 +243,7 @@ public class MineIt extends JavaPlugin {
                 return true;
             }
 
-            //player.sendMessage("Under consatruction...");
+            player.sendMessage("Under consatruction...");
             return true;
         }
         return false;
